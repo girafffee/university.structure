@@ -1,0 +1,17 @@
+{
+    "name": "girafffee/university.structure",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "girafffee",
+            "email": "sanko200065@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
