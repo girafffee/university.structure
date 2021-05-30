@@ -4,8 +4,6 @@
 namespace App\Kernel;
 
 
-use App\Config;
-
 class RouteItem {
 
 	public $url;
@@ -32,7 +30,7 @@ class RouteItem {
 		if ( count( $methods ) == 2 ) {
 			$this->action = $methods[1];
 		} else {
-			$this->action = Config::DEFAULT_ACTION;
+			$this->action = US_DEFAULT_ACTION;
 		}
 	}
 

@@ -3,12 +3,15 @@
 
 namespace App\Kernel;
 
-use App\Config;
+use App\Layouts\FooterLayoutPart;
+use App\Layouts\HeaderLayoutPart;
 use App\Layouts\HeadLayoutPart;
 use App\Tools;
 
 
 class Response {
+
+	private $layout = US_LAYOUT;
 
 	public $pageData = array(
 		'head'    => '',
@@ -20,14 +23,22 @@ class Response {
 //*------------------------------------------------------------
 // Собрать данные для построения страницы
 	public function buildPageData() {
-		$this->pageData['head']= HeadLayoutPart::get()->getContent();
+		$this->pageData['head']   = HeadLayoutPart::get()->getContent();
+		$this->pageData['footer'] = FooterLayoutPart::get()->getContent();
+		$this->pageData['header'] = HeaderLayoutPart::get()->getContent();
+	}
+
+	public function layout( string $tplName = '' ): string {
+		if ( '' !== $tplName ) {
+			$this->layout = $tplName;
+		}
+
+		return $this->layout;
 	}
 
 	public function renderPage() {
-		$layoutName = Config::LAYOUT;
-
 		ob_start();
-		include Tools::getView( "layouts/{$layoutName}.php" );
+		include Tools::getView( "layouts/{$this->layout()}.php" );
 
 		return ob_get_clean();
 	}

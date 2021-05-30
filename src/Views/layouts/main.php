@@ -17,7 +17,7 @@ use App\Kernel\Response;
 	<?= $this->pageData['header'] ?>
 </header>
 
-<section class="main">
+<section class="main mt-3">
 	<?= $this->pageData['content'] ?>
 </section>
 

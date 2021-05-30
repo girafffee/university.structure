@@ -111,11 +111,11 @@ class Router {
 		}
 	}
 
-	private function callControllerAction( $routeUrl, $action, $args = array() ) {
+	private function callControllerAction( $routeUrl, $action, $args = array() ): string {
 		$action = ucfirst( $action );
 		$object = new self::$routes[ $routeUrl ]->controller();
 
-		return call_user_func( array( $object, "action{$action}" ), $args );
+		return call_user_func( array( $object, "action{$action}" ), ...$args );
 	}
 
 

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Helpers\RenderTrait;
+use App\Kernel\Response;
 use App\Kernel\Router;
 
 class BaseController {
@@ -24,6 +25,10 @@ class BaseController {
 			}
 			$data[ $key ] = $post;
 		}
+	}
+
+	protected function setLayout( string $name ): void {
+		Response::instance()->layout( $name );
 	}
 
 }
