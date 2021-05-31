@@ -180,63 +180,6 @@ abstract class BaseModel {
 	}
 
 
-	public function Create( $data ): PDO_DB {
-		$sql = "INSERT INTO " . $this->table() . " ( ";
-		for ( $i = 0; $i < sizeof( $this->addFields ); $i ++ ) {
-			$arrFilds[] = "`" . $this->addFields[ $i ] . "`";
-		}
-		$sql .= implode( ", ", $arrFilds );
-		$sql .= ") VALUES (";
-
-		for ( $i = 0; $i < sizeof( $this->addFields ); $i ++ ) {
-			if ( array_key_exists( $this->addFields[ $i ], $data ) ) {
-				$arrValues[] = $data[ $this->addFields[ $i ] ];
-			} else {
-				$arrValues[] = $data[ $this->alias . '.' . $this->addFields[ $i ] ];
-			}
-		}
-		$sql .= ':' . implode( ", :", $this->addFields );
-		$sql .= '); ';
-
-		//echo $sql; print_r($data); die();
-		$query = PDO_DB::instance()->prepare( $sql );
-
-		return $query->exec( $data );
-	}
-
-	public function Delete( $data ): void {
-		$sql = "DELETE FROM " . $this->table() . " WHERE ";
-		foreach ( $data as $col => $value ) {
-			$conditions[] = $col . ' = :' . $col;
-		}
-		$sql .= implode( ' AND ', $conditions );
-		$sql .= ';';
-
-		//echo $sql; die();
-		$query = PDO_DB::instance()->prepare( $sql );
-		$query->exec( $data );
-	}
-
-	public function Update( $data ): void {
-		$sql = "UPDATE " . $this->table() . " SET ";
-		foreach ( $data as $col => $value ) {
-			if ( $col != $this->findField ) {
-				$newValues[] = $col . "=:" . $col;
-			}
-
-		}
-		$sql .= implode( ", ", $newValues );
-		$sql .= " WHERE " . $this->findField . '=' . $data[ $this->findField ];
-		unset( $data[ $this->findField ] );
-		$sql .= '; ';
-
-		//echo $sql;
-		$query = PDO_DB::instance()->prepare( $sql );
-		//print_r($sql); print_r($data);
-		$query->exec( $data );
-	}
-
-
 	public function getAll(): array {
 		$sql = "SELECT * FROM `" . $this->table() . '`;';
 
