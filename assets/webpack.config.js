@@ -11,7 +11,7 @@ const getEntries = names => {
 	return response;
 }
 module.exports = {
-	entry: getEntries( [ 'schedule/student' ] ),
+	entry: getEntries( [ 'schedule/student', 'lists/student' ] ),
 	output: {
 		path: path.resolve( __dirname, 'js' ),
 		filename: '[name].bundle.js'

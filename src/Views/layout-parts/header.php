@@ -29,6 +29,18 @@ use App\Layouts\BaseLayoutPart;
                         <li><a class="dropdown-item" href=""">Кафедри</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Списки
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="<?= us_route( 'lists.student' ) ?>">Студентів</a></li>
+                        <li><a class="dropdown-item" href="">Академ. групп</a></li>
+                        <li><a class="dropdown-item" href="">Викладачів</a></li>
+                        <li><a class="dropdown-item" href=""">Кафедр</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

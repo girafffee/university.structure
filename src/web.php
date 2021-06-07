@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Controllers\HomeController;
+use App\Controllers\StudentListController;
 use App\Controllers\StudentScheduleController;
 use App\Kernel\Router;
 
@@ -14,3 +15,6 @@ Router::add( '/schedule/student', StudentScheduleController::class )
 
 Router::addGroup( '/schedule/student/{action}/{id}', StudentScheduleController::class )
       ->name( 'schedule.student.group' );
+
+Router::add( '/lists/student', StudentListController::class )
+      ->name( 'lists.student' );

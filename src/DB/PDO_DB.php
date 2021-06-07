@@ -60,10 +60,4 @@ class PDO_DB {
 		return self::$instance;
 	}
 
-	private function __clone() {
-	}
-
-	private function __wakeup() {
-	}
-
 }

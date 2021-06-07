@@ -21,7 +21,7 @@ abstract class BaseLayoutPart {
 	abstract public function getContent(): string;
 
 	public function registerCss( string $url, string $position = self::POS_HEAD ): BaseLayoutPart {
-		if ( ! $this->cssItems[ $position ] ) {
+		if ( ! isset( $this->cssItems[ $position ] ) ) {
 			$this->cssItems[ $position ] = array();
 		}
 		$this->cssItems[ $position ][] = $url;
@@ -30,7 +30,7 @@ abstract class BaseLayoutPart {
 	}
 
 	public function registerJs( string $url, string $position = self::POS_BODY ): BaseLayoutPart {
-		if ( ! $this->jsItems[ $position ] ) {
+		if ( ! isset( $this->jsItems[ $position ] ) ) {
 			$this->jsItems[ $position ] = array();
 		}
 		$this->jsItems[ $position ][] = $url;
